@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright © 2014 OnlineGroups.net and Contributors.
+# Copyright © 2014, 2015 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -14,24 +14,22 @@
 ##############################################################################
 import codecs
 import os
-import sys
 from setuptools import setup, find_packages
 from version import get_version
 
+name = 'gs.group.list.email.base'
 version = get_version()
-
-requires = ['setuptools', 
-            'zope.viewlet']
 
 with codecs.open('README.rst', encoding='utf-8') as f:
     long_description = f.read()
-with codecs.open(os.path.join("docs", "HISTORY.rst"), 
+with codecs.open(os.path.join("docs", "HISTORY.rst"),
                  encoding='utf-8') as f:
     long_description += '\n' + f.read()
 
-setup(name='gs.group.list.email.text',
+setup(
+    name=name,
     version=version,
-    description="The text version of an email from a GroupServer group",
+    description="An email from a GroupServer group",
     long_description=long_description,
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -52,18 +50,18 @@ setup(name='gs.group.list.email.text',
         'Topic :: Communications :: Email :: Mailing List Servers',
         'Topic :: Communications :: Email :: Mail Transport Agents',
         "Topic :: Software Development :: Libraries :: Python Modules",
-      ],
+    ],
     keywords='groupserver, message, post, email, list',
     author='Michael JasonSmith',
     author_email='mpj17@onlinegroups.net',
-    url='https://github.com/groupserver/gs.group.list.email.text/',
+    url='https://github.com/groupserver/{0}'.format(name),
     license='ZPL 2.1',
     packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['gs', 'gs.group', 'gs.group.list',
-                        'gs.group.list.email'],
+    namespace_packages=['.'.join(name.split('.')[:i])
+                        for i in range(1, len(name.split('.')))],
     include_package_data=True,
     zip_safe=False,
-    install_requires=requires,
+    install_requires=['setuptools'],
     tests_require=['mock', ],
     test_suite="gs.group.list.email.text.tests.test_all",
     extras_require={'docs': ['Sphinx'], },

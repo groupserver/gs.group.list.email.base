@@ -1,13 +1,13 @@
 ============================
-``gs.group.list.email.text``
+``gs.group.list.email.base``
 ============================
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The plain-text version of the messages from a GroupServer group
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The messages from a GroupServer group
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :Author: `Michael JasonSmith`_
 :Contact: Michael JasonSmith <mpj17@onlinegroups.net>
-:Date: 2014-11-27
+:Date: 2015-07-10
 :Organization: `GroupServer.org`_
 :Copyright: This document is licensed under a
   `Creative Commons Attribution-Share Alike 4.0 International License`_
@@ -21,10 +21,7 @@ Introduction
 
 The email messages that GroupServer_ sends from a group are
 different from what is received. This product supplies the code
-for representing a post_, and a `message template`_ for rendering
-it. The headers are changed when the message is being sent
-[#sender]_, while the HTML version of the message is currently
-dropped.
+for representing a post_.
 
 Post
 ====
@@ -56,97 +53,6 @@ For testing this adaption and rendering is done automatically by
 the ``gs-group-list-email`` traversal. It takes the
 post-identifier off the URL and returns a rendered page:
 <http://groupserver.org/groups/development/messages/gs-group-list-email/N5o9zxaSkSYFQBB45HqHV>
-
-Message template
-================
-
-The message template itself just contains the
-``groupserver.EmailTextMessage`` viewlet manager [#viewlet]_ —
-which provides the
-``gs.group.list.email.text.interfaces.ITextMessage`` interface.
-By default, three viewlets are provided for the message. Each
-viewlet contains further viewlet manager, effectively dividing
-the message in three: the prologue_, the body_ and the
-appendix_::
-
-  ┌Text message───────────────────────────────────────┐
-  │┌Text message viewlet manager─────────────────────┐│
-  ││gs.group.list.email.text.interfaces.ITextMessage ││
-  ││                                                 ││
-  ││┌Prologue viewlet manager───────────────────────┐││
-  │││gs.group.list.email.text.interfaces.IPrologue  │││
-  ││└───────────────────────────────────────────────┘││
-  ││                                                 ││
-  ││┌Body viewlet manager───────────────────────────┐││
-  │││gs.group.list.email.text.interfaces.IBody      │││
-  ││└───────────────────────────────────────────────┘││
-  ││                                                 ││
-  ││┌Appendix viewlet manager───────────────────────┐││
-  │││gs.group.list.email.text.interfaces.IAppendix  │││
-  ││└───────────────────────────────────────────────┘││
-  │└─────────────────────────────────────────────────┘│
-  └───────────────────────────────────────────────────┘
-
-Prologue
---------
-
-The prologue of a message appears at the top of the message body,
-but before the body_ proper. The *viewlet manager*
-``groupserver.EmailTextPrologue``
-(``gs.group.list.email.text.interfaces.IPrologue``) is normally
-filled by the *File notice* viewlets.
-
-The *File notice* viewlets state that there is one or more files
-listed in the appendix_:
-
-* One (``gs-group-list-email-text-prologue-file``) provides a
-  short notice that there is *a* file listed in the appendix of a
-  message, 
-
-* The other (``gs-group-list-email-text-prologue-files``)
-  provides a short notice that there are *multiple* files listed
-  in the appendix of a message.
-
-Body
-----
-
-The *body* of the message is provided by the
-``groupserver.EmailTextBody``
-(``gs.group.list.email.text.interfaces.IBody``) viewlet manager.
-
-The *Plan body* (``gs-group-list-email-text-body-plain``) viewlet
-writes out the body of the post much as it was when it was sent
-in.
-
-Appendix
---------
-
-The *appendix* of the message is provided by the
-``groupserver.EmailTextAppendix``
-(``gs.group.list.email.text.interfaces.IAppendix``) viewlet
-manager. Two viewlets are provided as standard: a `files list`_
-and a footer_.
-
-Files list
-~~~~~~~~~~
-
-Files are large burden for a list, as they dramatically increase
-the size of the message for little gain [#picture]_. Because of
-this the attached files are replaced with *links* to the files on
-the Web. The *Files list* viewlet
-(``gs-group-list-email-text-appendix-files``) provides this list.
-
-Footer
-~~~~~~
-
-The standard *Footer* viewlet
-(``gs-group-list-email-text-appendix-footer``) provides the
-following:
-
-* The *Unsubscribe* link, which is legally required in many
-  jurisdictions.
-
-* A link to the topic on the Web.
 
 Resources
 =========
