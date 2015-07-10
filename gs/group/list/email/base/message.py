@@ -14,11 +14,11 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals
 from zope.component import getMultiAdapter
-from gs.content.email.base import (GroupEmail, TextMixin)
+from gs.group.base import GroupPage
 from .post import Post
 
 
-class MessageTraversal(GroupEmail):
+class MessageTraversal(GroupPage):
     '''The "traversal" system for previewing messages
 
 :param messages: The messages folder for a group.
@@ -56,21 +56,4 @@ Get a named adapter for the post, and the request, defaulting to the
         page = getMultiAdapter((self.post, self.request),
                                name=name)
         retval = page()
-        return retval
-
-
-class TextMessage(GroupEmail, TextMixin):
-    '''The actual *page* for the text version of a post.
-
-:param .interfaces.IPost post: The post to render
-:param request: The Zope request
-
-Mostly this class exists just to set the correct headers. The heavy-lifting
-is done by the viewlets.'''
-    def __init__(self, post, request):
-        super(TextMessage, self).__init__(post, request)
-
-    def __call__(self, *args, **kwargs):
-        self.set_header('post-{0}.txt'.format(self.context.postId))
-        retval = super(TextMessage, self).__call__(*args, **kwargs)
         return retval
