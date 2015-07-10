@@ -26,10 +26,10 @@ for representing a post_.
 Post
 ====
 
-The ``gs.group.list.email.text.Post`` class takes a ``messages``
+The ``gs.group.list.email.base.Post`` class takes a ``messages``
 folder, the group info, and a post-identifier and returns a
 representation of a post that conforms with the
-``gs.group.list.email.text.interfaces.IPost`` interface.
+``gs.group.list.email.base.interfaces.IPost`` interface.
 
 .. code-block:: python
 
@@ -57,7 +57,7 @@ post-identifier off the URL and returns a rendered page:
 Resources
 =========
 
-- Code repository: https://github.com/groupserver/gs.group.list.email.text
+- Code repository: https://github.com/groupserver/gs.group.list.email.base
 - Questions and comments to http://groupserver.org/groups/development
 - Report bugs at https://redmine.iopen.net/projects/groupserver
 

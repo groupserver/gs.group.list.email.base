@@ -1,22 +1,13 @@
 Changelog
 =========
 
-1.1.0 (2015-01-26)
+1.0.0 (2015-07-xx)
 ------------------
 
-* Shortening the file notice in the prelude `(discussion)`_
-* Adding some internationalisation
-* Fixing the name of some viewlets (thanks Bill_)
-* Permission fixes
-* Assertion fixes
+Initial version. Prior to the creation of this product the base
+email rendering code was part of `gs.group.list.email.text`_
 
-.. _(discussion): http://groupserver.org/r/post/ST6ebgwE9wy0tuG20ynm1
-.. _Bill: http://groupserver.org/p/wbushey
-
-1.0.0 (2014-11-27)
-------------------
-
-* Initial version, inspired by code from the
-  ``XWFMailingListManager`` product
+.. _gs.group.list.email.text:
+   https://github.com/groupserver/gs.group.list.email.text
 
 ..  LocalWords:  Changelog GitHub
