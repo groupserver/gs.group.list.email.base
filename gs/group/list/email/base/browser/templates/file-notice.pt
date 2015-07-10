@@ -1,7 +1,0 @@
-<tal:block
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="gs.group.list.email.text"
-  i18n:translate="prelude-file-single">― 1 file link ―
-
-</tal:block>
