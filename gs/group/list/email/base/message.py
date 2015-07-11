@@ -14,11 +14,12 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals
 from zope.component import getMultiAdapter
+from Acquisition import Implicit
 from gs.group.base import GroupPage
 from .post import Post
 
 
-class MessageTraversal(GroupPage):
+class MessageTraversal(GroupPage, Implicit):
     '''The "traversal" system for previewing messages
 
 :param messages: The messages folder for a group.

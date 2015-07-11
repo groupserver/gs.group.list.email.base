@@ -14,10 +14,11 @@
 ############################################################################
 from __future__ import (absolute_import, division, unicode_literals)
 from zope.cachedescriptors.property import Lazy
+from Acquisition import Implicit
 from .queries import MessageQuery
 
 
-class Post(object):
+class Post(Implicit):
     '''A post made to a group
 
 :param messages: The messages folder of a group.
@@ -33,6 +34,7 @@ class Post(object):
             messages
         self.groupInfo = groupInfo
         self.postId = self.__name__ = postId
+        super(Post, self).__init__()
 
     @Lazy
     def id(self):
