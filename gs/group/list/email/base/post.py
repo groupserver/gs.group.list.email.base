@@ -14,27 +14,33 @@
 ############################################################################
 from __future__ import (absolute_import, division, unicode_literals)
 from zope.cachedescriptors.property import Lazy
+from zope.component import createObject
+from gs.group.base import GroupPage
 from Acquisition import Implicit
 from .queries import MessageQuery
 
 
-class Post(Implicit):
+class Post(Implicit, GroupPage):
     '''A post made to a group
 
 :param messages: The messages folder of a group.
 :type messages: Products.XWFMailingListManager.interfaces.IGSMessagesFolder
-:param groupInfo: The information about the current group.
-:type groupInfo: Products.GSGroup.interfaces.IGSGroupInfo
 :param str postId: The identifier for the post.'''
-    def __init__(self, messages, groupInfo, postId):
+    def __init__(self, messages, request, postId):
         if not postId:
             raise ValueError('Post identifier required')
-        # FIXME: Sort out the context so it works
-        self.context = self.messages = self.__parent__ = self.aq_inner = \
-            messages
-        self.groupInfo = groupInfo
+        super(Post, self).__init__(messages, request)
+
+        # __name__ and __parent__ are part of zope.location.interfaces.IContained API
+        # <http://docs.zope.org/zope.location/api.html#zope.location.interfaces.IContained>
         self.postId = self.__name__ = postId
-        super(Post, self).__init__()
+        self.__parent__ = messages
+
+    @Lazy
+    def groupInfo(self):
+        group = self.context.aq_parent.aq_parent
+        retval = createObject('groupserver.GroupInfo', group)
+        return retval
 
     @Lazy
     def id(self):
@@ -48,6 +54,7 @@ class Post(Implicit):
                     is in the database'''
         query = MessageQuery(self.groupInfo.groupObj)
         retval = query.post(self.postId)
+
         if ((retval['group_id'] != self.groupInfo.id)
            or (retval['site_id'] != self.groupInfo.siteInfo.id)):
                 m = 'Post "{0}" not in the group {1} on {2}'

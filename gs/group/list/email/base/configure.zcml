@@ -17,9 +17,9 @@
   <browser:page
     name="gs-group-list-email"
     for="Products.XWFMailingListManager.interfaces.IGSMessagesFolder"
-    class=".message.MessageTraversal"
+    class=".traverse.MessageTraversal"
     permission="zope2.Public" />
-  <class class=".message.MessageTraversal">
+  <class class=".traverse.MessageTraversal">
     <implements interface="zope.publisher.interfaces.IPublishTraverse"/>
   </class>
   <!--The Post-class provides the IPost interface -->

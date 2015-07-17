@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2014 OnlineGroups.net and Contributors.
+# Copyright © 2014, 2015 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -12,7 +12,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, unicode_literals, print_function
 from zope.component import getMultiAdapter
 from Acquisition import Implicit
 from gs.group.base import GroupPage
@@ -44,7 +44,7 @@ property.'''
         self.traverse_subpath.append(name)
         if self.post is None:
             # Load the post, and hook it into the aquisition tree
-            self.post = Post(self.context, self.groupInfo, name)
+            self.post = Post(self, request, name)
         return self
 
     def __call__(self):
