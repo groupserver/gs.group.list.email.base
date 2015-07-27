@@ -37,6 +37,7 @@ class Message(GroupPage):
 
     def as_email(self):
         retval = MIMEMultipart('alternative')
-        for part in self.parts:
-            retval.attach(part)
+        for name, part in self.parts:
+            p = part.as_email()
+            retval.attach(p)
         return retval

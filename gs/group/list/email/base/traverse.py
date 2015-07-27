@@ -16,6 +16,7 @@ from __future__ import absolute_import, unicode_literals, print_function
 from zope.component import getMultiAdapter
 from Acquisition import Implicit
 from gs.group.base import GroupPage
+from .message import Message
 from .post import Post
 
 
@@ -53,8 +54,12 @@ property.'''
 Get a named adapter for the post, and the request, defaulting to the
 ``text`` name. Call the adapter, returning the result.'''
         tsp = self.traverse_subpath
-        name = tsp[1] if len(tsp) > 1 else 'text'
-        page = getMultiAdapter((self.post, self.request),
-                               name=name)
-        retval = page()
+        if len(tsp) > 1:
+            name = tsp[1]
+            page = getMultiAdapter((self.post, self.request),
+                                   name=name)
+            retval = page()
+        else:
+            message = Message(self.post, self.request)
+            retval = message.as_email()
         return retval

@@ -28,4 +28,7 @@
     <implements interface="zope.location.interfaces.IContained"/>
   </class>
 
+  <class class=".message.Message">
+    <implements interface=".interfaces.IMessage" />
+  </class>
 </configure>

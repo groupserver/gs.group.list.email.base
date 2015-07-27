@@ -21,12 +21,14 @@ class IPost(Interface):
     'A marker interface for a post'
 
 
-class IMessagePart(Interface):
+class IMessage(Interface):
+    def as_email():  # lint:ok
+        '''The message as an instance of the :class:`email.message.Message` class'''
+
+
+class IMessagePart(IMessage):
     weight = Int(
         title='Weight',
         description='The message parts are ordered by their weight, with the '
                     'simpler parts having smaller weights.',
         required=True)
-
-    def as_email():  # lint:ok
-        '''The part as an instance of the :class:`email.message.Message` class'''
