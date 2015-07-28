@@ -23,9 +23,11 @@ from .queries import MessageQuery
 class Post(Implicit, GroupPage):
     '''A post made to a group
 
-:param messages: The messages folder of a group.
-:type messages: Products.XWFMailingListManager.interfaces.IGSMessagesFolder
-:param str postId: The identifier for the post.'''
+:param messages: The messages folder of a group
+:type messages: :class:`Products.XWFMailingListManager.interfaces.IGSMessagesFolder`
+:param request: The current HTTP request
+:type request: :class:`zope.publisher.interfaces.browser.IBrowserRequest`
+:param str postId: The identifier for the post'''
     def __init__(self, messages, request, postId):
         if not postId:
             raise ValueError('Post identifier required')
@@ -84,14 +86,14 @@ class File(object):
     '''A file attached to a post.
 
 :param groupInfo: The information about the current group.
-:type groupInfo: Products.GSGroup.interfaces.IGSGroupInfo
+:type groupInfo: :class:`Products.GSGroup.interfaces.IGSGroupInfo`
 :param str fileId: The file identifier.
 :param str name: The file name.
 :param int rawSize: The size of the file in bytes.
 :param str mimeType: The MIME type of the file.'''
     def __init__(self, groupInfo, fileId, name, rawSize, mimeType):
         self.fileId = fileId
-        #: The filename
+        #: The name of the file
         self.name = name
         self.rawSize = rawSize
         #: The human-readable size of the file
@@ -99,13 +101,19 @@ class File(object):
         #: The MIME-type of the file.
         self.mimeType = mimeType
         u = '{0}/r/file/{1}/'
-        #: The URL to the file (a short-link)
+        #: The URL to the file (as short-link, with the site URL included)
         self.url = u.format(groupInfo.siteInfo.url, fileId)
 
     @classmethod
     def from_query_dict(cls, groupInfo, d):
-        '''Generate a file object from the dictionart that comes out of the
-database.'''
+        '''Generate a file object from the dictionary that comes out of the
+database.
+
+:param groupInfo: The information about the current group.
+:type groupInfo: :class:`Products.GSGroup.interfaces.IGSGroupInfo`
+:param dict d: The dictionary, as returned as elements of the list returned by
+               :func:`gs.group.list.email.base.queries.MessageQuery.files_metadata`
+'''
         retval = cls(groupInfo, d['file_id'], d['file_name'],
                      d['file_size'], d['mime_type'])
         return retval

@@ -18,8 +18,8 @@ from gs.database import getTable, getSession
 
 
 class MessageQuery(object):
-    def __init__(self, context):
-        self.context = context
+    '''Query the relational database for message information'''
+    def __init__(self, context=None):
         self.postTable = getTable('post')
         self.fileTable = getTable('file')
 
@@ -32,19 +32,20 @@ class MessageQuery(object):
 
 The dictionary representing the post contains the following
 
-==================  ========  ==========================
+==================  ========  ====================================
 Key                 Type      Note
-==================  ========  ==========================
+==================  ========  ====================================
 ``post_id``         str       The post identifier
 ``group_id``        str       The group identifier
-``site_id'          str       The site identifier
+``site_id``         str       The site identifier
 ``subject``         str       The subject (topic title)
 ``date``            DateTime  The date the post was made
 ``author_id``       str       The author identifier
 ``body``            str       The body of the post
 ``hidden``          DateTime  Set if the post is hidden
-``files_metadata``  ``list``  The list of attached files
-==================  ========  ==========================
+``files_metadata``  list      The list of attached files (see
+                              :meth:`MessageQuery.files_metadata`)
+==================  ========  ====================================
 """
         if not postId:
             raise ValueError('postId must be set')
@@ -69,7 +70,24 @@ Key                 Type      Note
         return retval
 
     def files_metadata(self, postId):
-        """Retrieve the metadata of all files associated with this post."""
+        """Retrieve the metadata of all files associated with a post
+
+:param str post_id: The identifier of a post
+:returns: The files for the post, or and empty list (``[]``)
+:rtype: list
+
+The dictionary representing the each file contains the following
+
+==================  ========  =============================
+Key                 Type      Note
+==================  ========  =============================
+``file_id``         str       File identifier
+``file_name``       Unicode   File name
+``date``            DateTime  The date the file was created
+``mime_type``       Unicode   The MIME type of the file
+``file_size``       int       The size of the file in bytes
+==================  ========  =============================
+"""
         ft = self.fileTable
         statement = ft.select()
         statement.append_whereclause(ft.c.post_id == postId)

@@ -1,9 +1,5 @@
-============================
-``gs.group.list.email.base``
-============================
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The messages from a GroupServer group
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:mod:`gs.group.list.email.base`
+===============================
 
 :Author: `Michael JasonSmith`_
 :Contact: Michael JasonSmith <mpj17@onlinegroups.net>
@@ -16,12 +12,15 @@ The messages from a GroupServer group
 .. _Creative Commons Attribution-Share Alike 4.0 International License:
     http://creativecommons.org/licenses/by-sa/4.0/
 
-Introduction
-============
+Contents:
 
-The email messages that GroupServer_ sends from a group are
-different from what is received. This product supplies the core
-code for making that transformation.
+.. toctree::
+   :maxdepth: 2
+
+   parts
+   traversal
+   api
+   HISTORY
 
 Resources
 =========
@@ -36,4 +35,10 @@ Resources
 .. _GroupServer.org: http://groupserver.org/
 .. _OnlineGroups.Net: https://onlinegroups.net
 .. _Michael JasonSmith: http://groupserver.org/p/mpj17
-..  LocalWords:  IAppendix viewlets groupserver EmailTextPrologue
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

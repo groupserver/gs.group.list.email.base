@@ -22,11 +22,20 @@ class IPost(Interface):
 
 
 class IMessage(Interface):
+    '''The interface for a message'''
+
     def as_email():  # lint:ok
-        '''The message as an instance of the :class:`email.message.Message` class'''
+        '''Return the post as an email message
+
+:returns: The post as an instance of the standard core email message class
+:rtype: :class:`email.message.Message`'''
 
 
 class IMessagePart(IMessage):
+    '''The interface for parts of a message, based on :class:`IMessage`.'''
+
+    #: The message parts are ordered by their weight, with the simpler parts
+    #: having smaller weights.
     weight = Int(
         title='Weight',
         description='The message parts are ordered by their weight, with the '

@@ -21,14 +21,15 @@ from .post import Post
 
 
 class MessageTraversal(GroupPage, Implicit):
-    '''The "traversal" system for previewing messages
+    '''The *traversal* system for previewing messages
 
 :param messages: The messages folder for a group.
-:type messages: Products.XWFMailingListManager.interfaces.IGSMessagesFolder
-:param request: The request-object.
+:type messages: :class:`Products.XWFMailingListManager.interfaces.IGSMessagesFolder`
+:param request: The browser request
+:type request: :class:`zope.publisher.interfaces.browser.IBrowserRequest`
 
 It is useful to be able to preview messages. This class provides a way
-of doing that: given a url of the form ``{postId}/{format}`` it loads
+of doing that: given a URL of the form ``{postId}/{format}`` it loads
 the post, and then returns the rendered version of the post in the correct
 format.'''
     def __init__(self, messages, request):

@@ -18,13 +18,10 @@ from gs.group.base import GroupViewlet
 from Products.GSGroup.interfaces import (IGSMailingListInfo)
 
 
-# FIXME: I am unsure why I cannot get the acquisition to work, so the
-# GroupViewlet.groupInfo and GroupInfo.siteInfo properties fail to get
-# the site an group. This is a hack to get around that issue.
-
 class EmailMessageViewlet(GroupViewlet):
-
+    '''A viewlet for parts of an email message'''
     @Lazy
     def listInfo(self):
+        '''The mailing-list information for the group'''
         retval = IGSMailingListInfo(self.groupInfo.groupObj)
         return retval
