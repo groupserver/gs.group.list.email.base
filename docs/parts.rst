@@ -9,10 +9,31 @@ normally it is multiple documents in different formats. These
 parts are joined together and sent out as one email. The
 receiving email client decides which one to view, usually
 selecting the most complex part that can be rendered (see
-:rfc:`2046#section-5.1.4`).
+:rfc:`2046#section-5.1.4`). The effect is something similar to
+the diagram below, where a single
+:mimetype:`multipart/alternative` document contains a
+:mimetype:`text/plain` and a :mimetype:`text/html` version of the
+same document.
 
-In this section I will discuss the `anatomy of a part`_ and what
-is required to `join the parts`_.
+.. code-block:: none
+
+                ┌─multipart/alternative────────────────────────┐
+                │                                              │
+                │ ┌─text/plain───────────────────────────────┐ │
+                │ │ The top part should always be plain text │ │
+                │ └──────────────────────────────────────────┘ │
+                │                                              │
+                │ ┌─text/html────────────────────────────────┐ │
+                │ │ The most complex part should be last     │ │
+                │ └──────────────────────────────────────────┘ │
+                │                                              │
+                └──────────────────────────────────────────────┘
+
+This :mod:`gs.group.list.email.base` product supplies the
+components to allow the different parts of an email message to be
+created, rather than the parts themselves. In this section I will
+discuss the `anatomy of a part`_ and what is required to `join
+the parts`_.
 
 Anatomy of a part
 -----------------

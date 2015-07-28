@@ -21,7 +21,10 @@ Introduction
 
 The email messages that GroupServer_ sends from a group are
 different from what is received. This product supplies the core
-code for making that transformation.
+code for making that transformation. 
+
+The message itself is formatted by ``gs.group.list.email.html``
+[#html]_ and ``gs.group.list.email.text`` [#text]_.
 
 Resources
 =========
@@ -37,4 +40,11 @@ Resources
 .. _GroupServer.org: http://groupserver.org/
 .. _OnlineGroups.Net: https://onlinegroups.net
 .. _Michael JasonSmith: http://groupserver.org/p/mpj17
+
+.. [#html] See the ``gs.group.list.email.html`` product
+           <https://github.com/groupserver/gs.group.list.email.html>
+
+.. [#text] See the ``gs.group.list.email.text`` product
+           <https://github.com/groupserver/gs.group.list.email.text>
+
 ..  LocalWords:  IAppendix viewlets groupserver EmailTextPrologue

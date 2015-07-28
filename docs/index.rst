@@ -12,6 +12,10 @@
 .. _Creative Commons Attribution-Share Alike 4.0 International License:
     http://creativecommons.org/licenses/by-sa/4.0/
 
+The email messages that GroupServer_ sends from a group are
+different from what is received. This product supplies the core
+code for making that transformation.
+
 Contents:
 
 .. toctree::

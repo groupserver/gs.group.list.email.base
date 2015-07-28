@@ -16,7 +16,7 @@ To preview a single email message visit ``gs-group-list-email``
 within the ``messages`` folder of a group, specifying the
 post-identifier for the message.
 
-::
+.. code-block:: none
 
   http://groupserver.org/groups/development/messages/gs-group-list-email/{postId}
 
@@ -36,7 +36,9 @@ separately if
 * The :ref:`part contents <part contents>` are specified as a
   browser *page*,
 * The ``name`` of the part is specified in the URL, after the
-  ``postId``::
+  ``postId``
+
+  .. code-block:: none
 
      …/gs-group-list-email/{postId}/{name}
 
