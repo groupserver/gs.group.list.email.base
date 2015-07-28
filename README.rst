@@ -28,6 +28,7 @@ Resources
 
 - Code repository:
   https://github.com/groupserver/gs.group.list.email.base
+- Documentation: See the ``docs`` folder in this product
 - Questions and comments to
   http://groupserver.org/groups/development
 - Report bugs at https://redmine.iopen.net/projects/groupserver
