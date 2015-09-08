@@ -26,7 +26,8 @@ class Message(GroupPage):
     def parts(self):
         gsm = getGlobalSiteManager()
         retval = [a for a in gsm.getAdapters((self.context, self.request),
-                                             IMessagePart)]
+                                             IMessagePart)
+                  if a[1].show]
         retval.sort(key=lambda r: r[1].weight)
         return retval
 

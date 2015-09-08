@@ -12,9 +12,9 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import, unicode_literals
+from __future__ import (absolute_import, unicode_literals, print_function)
 from zope.interface import Interface
-from zope.schema import Int
+from zope.schema import (Bool, Int)
 
 
 class IPost(Interface):
@@ -40,4 +40,9 @@ class IMessagePart(IMessage):
         title='Weight',
         description='The message parts are ordered by their weight, with the '
                     'simpler parts having smaller weights.',
+        required=True)
+
+    show = Bool(
+        title='Show',
+        description='Whether to show the message-part.',
         required=True)
