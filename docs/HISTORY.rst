@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.0 (2015-07-30)
+1.0.0 (2015-09-08)
 ------------------
 
 Initial version. Prior to the creation of this product the base
