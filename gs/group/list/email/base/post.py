@@ -60,7 +60,7 @@ class Post(Implicit, GroupPage):
         if ((retval['group_id'] != self.groupInfo.id)
            or (retval['site_id'] != self.groupInfo.siteInfo.id)):
                 m = 'Post "{0}" not in the group {1} on {2}'
-                msg = m.format(self.postId, self.grouInfo.id,
+                msg = m.format(self.postId, self.groupInfo.id,
                                self.groupInfo.siteInfo.id)
                 raise ValueError(msg)
         return retval
