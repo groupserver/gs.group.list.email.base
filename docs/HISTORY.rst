@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.1 (2015-10-08)
+------------------
+
+* Fixing a spelling mistake in a log message
+
 1.0.0 (2015-09-08)
 ------------------
 
